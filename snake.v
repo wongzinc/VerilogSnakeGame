@@ -131,10 +131,10 @@ snake_mov S1(
 dir_fsm F2(
     .clk(clk),
     .rst(rst || game_state == `STATE_IDLE),
-    .left(left || last_change == 9'h6B || left_online),
-    .right(right || last_change == 9'h74 || right_online),
-    .up(short_up_press || last_change == 9'h75 || up_online),
-    .down(short_down_press || last_change == 9'h72 || down_online ),
+    .left(left || key_down[9'h6B] || left_online),
+    .right(right || key_down[9'h74] || right_online),
+    .up(short_up_press || key_down[9'h75] || up_online),
+    .down(short_down_press || key_down[9'h72] || down_online ),
     .state(dir_state)
 );
 
