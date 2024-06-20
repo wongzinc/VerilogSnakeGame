@@ -14,6 +14,19 @@ module snake(
    input down,
    inout PS2_DATA,
    inout PS2_CLK,
+   
+   input vauxp6,
+   input vauxn6,
+   input vauxp7,
+   input vauxn7,
+   input vauxp15,
+   input vauxn15,
+   input vauxp14,
+   input vauxn14,
+   input vp_in,
+   input vn_in,
+   input [1:0] sw,
+   
    output [3:0] vgaRed,
    output [3:0] vgaGreen,
    output [3:0] vgaBlue,
@@ -54,6 +67,7 @@ wire clk_100hz;
 wire [511:0] key_down;
 wire [8:0] last_change;
 wire key_valid;
+wire data_valid;
 assign short_up_press = (long_and_short_up==1)? 1:0;
 assign long_up_press = (long_and_short_up==2)? 1:0;
 assign short_down_press = (long_and_short_down==1)?1:0;
@@ -353,11 +367,40 @@ KeyboardDecoder D1(
     .rst(rst),
     .clk(clk)
 );
-
+wire enable;  
+wire ready;
+wire [15:0] data_adc;   
+reg [6:0] Address_in;
+xadc_wiz_0  XLXI_7 (
+    .daddr_in(Address_in), //addresses can be found in the artix 7 XADC user guide DRP register space
+    .dclk_in(clk), 
+    .den_in(enable), 
+    .di_in(0), 
+    .dwe_in(0), 
+    .busy_out(),                    
+    .vauxp6(vauxp6),
+    .vauxn6(vauxn6),
+    .vauxp7(vauxp7),
+    .vauxn7(vauxn7),
+    .vauxp14(vauxp14),
+    .vauxn14(vauxn14),
+    .vauxp15(vauxp15),
+    .vauxn15(vauxn15),
+    .vn_in(vn_in), 
+    .vp_in(vp_in), 
+    .alarm_out(), 
+    .do_out(data_adc), 
+    //.reset_in(),
+    .eoc_out(enable),
+    .channel_out(),
+    .drdy_out(ready)
+);
 // need long press and short_press
 Soundtrack_controller Soundtrack_inst(
     .rst_n(~rst),
     .clk(clk),
+    .ready(ready),
+    .data_adc(data_adc),
     .up(long_up_press || key_down[9'h79]),
     .down(long_down_press || key_down[9'h7B]),
     .audio_mclk(audio_mclk),
@@ -367,7 +410,14 @@ Soundtrack_controller Soundtrack_inst(
     .vol_d3(vol_d3),
     .game_state(game_state)
 );
-
+always @(posedge(clk)) begin
+    case(sw)
+    0: Address_in <= 8'h16;
+    1: Address_in <= 8'h17;
+    2: Address_in <= 8'h1e;
+    3: Address_in <= 8'h1f;
+    endcase
+end
 assign LED = (game_state==3'd5)? 16'hFFFF:0;
 
 endmodule

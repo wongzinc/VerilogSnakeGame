@@ -11,6 +11,8 @@ module Soundtrack_controller(
     input clk,
     input rst_n,
     input up,down,
+    input ready,
+    input [15:0] data_adc,
     input [2:0] game_state,
     output audio_mclk,
     output audio_lrck,
@@ -62,6 +64,8 @@ speaker_control Usc(
 
 volume_ctrl V1(
     .clk(clk),
+    .ready(ready),
+    .data_adc(data_adc),
     .clk_100hz(clk_100hz),
     .rst_n(rst_n),
     .volume(amplitude),
