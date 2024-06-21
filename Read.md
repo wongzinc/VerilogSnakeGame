@@ -14,5 +14,5 @@
 > J3和K3配對，L3 和M3配對，以此類推。
 
 更多資訊：
-1. #https://github.com/Digilent/Basys-3-XADC/blob/master/README.md
-2. #https://www.physics.umd.edu/hep/drew/495/xadc.html
+1. #    https://github.com/Digilent/Basys-3-XADC/blob/master/README.md
+2. #    https://www.physics.umd.edu/hep/drew/495/xadc.html
