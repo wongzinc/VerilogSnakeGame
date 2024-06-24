@@ -50,9 +50,20 @@
 
 <details>
 <summary> 耳機的原理</summary>
-助教講了之後我才發現原來耳機插頭的結構是有原因的：
-插頭結構：
-    Tip（頂端）：通常為左聲道
-    Ring（環）：通常為右聲道
+助教講了之後我才發現原來耳機插頭的結構是有原因的：<br>
+插頭結構：<br>&nbsp&nbsp&nbsp
+    Tip（頂端）：通常為左聲道<br>&nbsp&nbsp&nbsp
+    Ring（環）：通常為右聲道<br>&nbsp&nbsp&nbsp
     Sleeve（套筒）：通常為共地（GND）
 </details>
+
+<details>
+<summary>電流放大器</summary>
+NPN 原理雖然簡單理解，但是在實際接電路方面我本人能力不足導致我只能藉助助教給的[GF1002]模組幫助我完成電流放大的效果。
+</details>
+
+
+
+# 結論
+雖然我一開始有提到說要做servo， 也就是假設蛇吃到了某個數量的蘋果后servo會往某個方向轉動，打開盒子。但是我想了想后，主題應該明確為類PS5游戲機。所以這個功能變得多餘了。我認爲功能應該跟著主題走，因此過單摒棄掉之前有做這個功能的想法。另外，透過這次的實驗我認識到了我似乎對電子電路非常有興趣，未來也會想要拿電子電路實驗課來加强本身的電路實作能力。另外我認爲此實驗可以做得更好的話，可以考慮加上Power management的功能，也就是在IDLE STATE，player 沒有動此電動好幾秒的時間后可以自動停用石英振蕩器的功能。我有此想法，但不知道實作不實作的出來。另外，還可以減少電力損耗過多的方法由於不同state 會顯示不同的照片， 可以在不同的state 下停用未在此state顯示的圖片。可以大量減少bram 的占用率。
+![Screenshot of bram may consume many power](/img/bram_consumption_power.jpeg)
