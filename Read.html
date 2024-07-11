@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Read.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<blockquote>
+<h1 id="%E4%B8%BB%E9%A1%8C-%E9%A1%9Eps5%E6%B8%B8%E6%88%B2%E6%A9%9F">主題: 類PS5游戲機</h1>
+<h1 id="by-%E7%8E%8B%E7%B1%BD%E7%A9%8E-112060062">BY: 王籽穎 112060062</h1>
+<h1 id="course-arduino-%E6%95%B8%E5%AA%92%E6%8E%A7%E5%88%B6">Course: Arduino 數媒控制</h1>
+</blockquote>
+<hr>
+<h2 id="%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9">功能介紹</h2>
+<h3 id="xadc-%E9%A1%8D%E5%A4%96%E6%8E%A7%E5%88%B6%E6%A8%A1%E7%B5%84">XADC 額外控制模組</h3>
+<blockquote>
+<p>The Dual Analog/Digital Pmod on the Basys 3 differs from the rest in the routing of its traces. The eight data signals are grouped into four pairs, with the pairs routed closely coupled for better analog noise immunity.</p>
+</blockquote>
+<blockquote>
+<p>The XADC core within the Artix-7 is a dual channel 12-bit analog-to-digital converter capable of operating at 1 MSPS. Either channel can be driven by any of the auxiliary analog input pairs connected to the JXADC header. The XADC core is controlled and accessed from a user design via the Dynamic Reconfiguration Port (DRP). The DRP also provides access to voltage monitors that are present on each of the FPGA's power rails, and a temperature sensor that is internal to the FPGA.</p>
+</blockquote>
+<blockquote>
+<p>解釋： Artix-7 系列只有4個可用的成對JXADC 引脚. 每一個傳輸資料速度在1MSPS。在選擇IP CATALOG 那裏需選擇DRP 來控制XADC的核心。這個四個成對的原因是VAUXP 和 VAUXN。主要的作用是用於測量兩個引脚之間的電壓差。每個VAUXP 通道都有一個與之相應的VAUXN 通道與之配對。XADC會自動計算VAUXP和VAUXN之間的電壓差,得到實際的輸入電壓。例如,如果你想測量一個-0.5V到+0.5V的信號,你可以將信號的正極連接到VAUXP[6],將信號的負極連接到VAUXN[6],然後將daddr_in設置為0x16。XADC會輸出一個與輸入電壓差成比例的數字量結果。需要注意的是,XADC的輸入範圍是有限的,通常為0到1.8V。如果輸入電壓超出了這個範圍,可能會導致測量結果不準確,甚至可能損壞XADC。因此,在連接輸入信號時,通常需要使用電阻分壓或者運算放大器等電路,將輸入信號的電壓調整到XADC的輸入範圍內。在這個專案中,我們只關心外部的模擬輸入,因此只使用了VAUXP和VAUXN。我們並不需要測量芯片的內部參數,因此將vp_in和vn_in設置為0,表示不使用這兩個通道。當你使用不同的VAUX通道時,會得到不同的電壓值,這是因為每個VAUX通道都連接到FPGA的不同引腳,這些引腳可能連接到電路板上的不同元件或者電路節點。</p>
+</blockquote>
+<p><img src="https://github.com/wongzinc/VerilogSnakeGame/blob/main/img/polar_mode.png?raw=true" alt="Screenshot of unipolar and bipolar mode with circuits diagram"></p>
+<blockquote>
+<p>另外, XADC 可以測量(0 ~ 1v)單極和(-0.5V ~ 0.5V)雙極。</p>
+</blockquote>
+<p><img src="https://github.com/wongzinc/VerilogSnakeGame/blob/main/img/xadc_pair_pins.png?raw=true" alt="Screenshot of xadc pair pins"></p>
+<blockquote>
+<p>J3和K3配對，L3 和M3配對，以此類推。</p>
+</blockquote>
+<p>更多資訊,請參考：
+[1]: https://github.com/Digilent/Basys-3-XADC/blob/master/README.md
+[2]: https://www.physics.umd.edu/hep/drew/495/xadc.html</p>
+<h3 id="arduinoesp-32%E6%A8%A1%E7%B5%84%E9%A1%8D%E5%A4%96%E6%8E%A7%E5%88%B6">ARDUINO/ESP-32模組額外控制</h3>
+<p><strong>透過這次的專題，我學到了</strong></p>
+<details>
+<summary>電路連接</summary>
+透過助教的幫助，成功分壓了3.3v 至1v。原來其實可以不用想的那麽複雜（用分壓的方式）。只需要用串聯的方式3.3/（10kohm+10kohm+ 可變（10kohm））=0.11*10^4。這個0.11*10^4 * (可變10khm)=1.1V. 所以範圍就從0到1V了。此外我發現到假設有固定的電阻值，如果在固定的電阻值上再加上越大的電阻，總體的電流雖然變小，但是剛加上的電阻由於很大，分壓給剛加的電阻的電壓越大。這也是一種分壓方式啊。
+</details>
+<details>
+<summary>ESP-32代碼除錯</summary>
+我大概看了粗略地看過ESP-32 datasheet 之後還是沒明白爲什麽有些GPIO 會影響OUTPUT 的輸出。總之在做ESP-32專題的時候除錯時先不管3721改變GPIO 接脚就對了。可能是本人對於ESP-32 用的不多，使用ARDUINO 的時候也只碰過一次類似的事情。
+</details>
+<details>
+<summary>焊接原理</summary>
+我使用到的焊接工具主要為：
+- 焊槍 
+- 焊接機：提供電流進行焊接的主要設備
+- 焊條
+- 鋼絲刷： 用於清潔焊接表面
+我學到了原來焊接的時候如果不清理表面已經不熱的錫，由於缺少助焊劑，焊接的時候不能有效的把手持的焊條焊進理想的區域。這是因爲錫的性質融化后會想要去熱的地方。因此在焊接前可以先把一小部分的焊條在黏附在焊槍的表面，趁表面還熱的時候趕緊將手持的焊條往理想區域焊接，焊條會自動走向焊槍表面上黏附的錫。
+</details>
+<details>
+<summary> 耳機的原理</summary>
+助教講了之後我才發現原來耳機插頭的結構是有原因的：<br>
+插頭結構：<br>&nbsp&nbsp&nbsp
+    Tip（頂端）：通常為左聲道<br>&nbsp&nbsp&nbsp
+    Ring（環）：通常為右聲道<br>&nbsp&nbsp&nbsp
+    Sleeve（套筒）：通常為共地（GND）
+</details>
+<details>
+<summary>電流放大器</summary>
+NPN 原理雖然簡單理解，但是在實際接電路方面我本人能力不足導致我只能藉助助教給的[GF1002]模組幫助我完成電流放大的效果。
+</details>
+<h3 id="%E7%B5%90%E8%AB%96">結論</h3>
+<p>雖然我一開始有提到說要做servo， 也就是假設蛇吃到了某個數量的蘋果后servo會往某個方向轉動，打開盒子。但是我想了想后，主題應該明確為類PS5游戲機。所以這個功能變得多餘了。我認爲功能應該跟著主題走，因此過單摒棄掉之前有做這個功能的想法。另外，透過這次的實驗我認識到了我似乎對電子電路非常有興趣，未來也會想要拿電子電路實驗課來加强本身的電路實作能力。另外我認爲此實驗可以做得更好的話，可以考慮加上Power management的功能，也就是在IDLE STATE，player 沒有動此電動好幾秒的時間后可以自動停用石英振蕩器的功能。我有此想法，但不知道實作不實作的出來。另外，還可以減少電力損耗過多的方法由於不同state 會顯示不同的照片， 可以在不同的state 下停用未在此state顯示的圖片。可以大量減少bram 的占用率。
+<img src="https://raw.githubusercontent.com/wongzinc/VerilogSnakeGame/eeb47dd72afb46bbf0697bb1723d73d32aa6977d/img/bram_consumption_power.jpeg" alt="Screenshot of bram may consume many power"></p>
+<hr>
+<h1 id="%E6%84%9F%E8%AC%9D%E8%A7%80%E7%9C%8B">感謝觀看</h1>
+<p><img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" alt="Alt Text"></p>
+
+</body>
+</html>
